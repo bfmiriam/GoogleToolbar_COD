@@ -5,32 +5,35 @@
  */
 package org.myorg.googletoolbar;
 
+
+import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
-import org.openide.awt.ActionReferences;
 import org.openide.awt.ActionRegistration;
-import org.openide.util.NbBundle.Messages;
+import org.openide.util.actions.Presenter;
 
 @ActionID(
         category = "File",
-        id = "org.myorg.googletoolbar.GoogleActionListener"
-)
+        id = "org.myorg.googletoolbar.GoogleActionListener")
+
 @ActionRegistration(
-        iconBase = "org/myorg/googletoolbar/google16.png",
-        displayName = "#CTL_GoogleActionListener"
-)
-@ActionReferences({
-    @ActionReference(path = "Menu/File", position = 0)
-    ,
-  @ActionReference(path = "Toolbars/File", position = 0)
-})
-@Messages("CTL_GoogleActionListener=Google")
-public final class GoogleActionListener implements ActionListener {
+        lazy = false,
+        displayName = "NOT-USED")
+@ActionReference(
+        path = "Toolbars/File",
+        position = 0)
+public final class GoogleActionListener extends AbstractAction implements Presenter.Toolbar {
+
+    @Override
+    public Component getToolbarPresenter() {
+        return new GooglePanel();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        //delegated to toolbar
     }
+
 }
